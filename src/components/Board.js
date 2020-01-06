@@ -10,6 +10,9 @@ function Board() {
 
   // Update game data every second
   useEffect(() => {
+    if (gameId === '') {
+      return undefined;
+    }
     dispatch(fetchGameData(gameId));
     const interval = setInterval(() => dispatch(fetchGameData(gameId)), 1000);
     return () => {
