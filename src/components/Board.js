@@ -6,7 +6,7 @@ import { fetchGameData } from './../actions/gameDataActions';
 
 function Board() {
   const dispatch = useDispatch();
-  const gameId = useSelector((state) => state.gameId);
+  const gameId = useSelector((state) => state.gameInfo.gameId);
 
   // Update game data every second
   useEffect(() => {

@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 import gameDataReducer from './GameDataReducer';
-import gameIdReducer from './GameIdReducer';
+import GameInfoReducer from './GameInfoReducer';
 
 // Combines all reducers and export them
 export default combineReducers({
   gameData: gameDataReducer,
-  gameId: gameIdReducer
+  gameInfo: GameInfoReducer
 });

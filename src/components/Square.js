@@ -7,7 +7,7 @@ import { doMove } from './../actions/gameDataActions';
 function Square(props) {
   const dispatch = useDispatch();
   const gameData = useSelector((state) => state.gameData);
-  const gameId = useSelector((state) => state.gameId);
+  const gameId = useSelector((state) => state.gameInfo.gameId);
 
   function squareClicked() {
     dispatch(doMove(gameId, props.xPos, props.yPos, gameData.nextToMove));

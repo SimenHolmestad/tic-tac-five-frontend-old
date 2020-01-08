@@ -8,7 +8,7 @@ import {
 function App() {
   return (
     <Router>
-      <Route path='/play/:gameId' component={ Game }/>
+      <Route path='/play/:gameId/:playType' component={ Game }/>
     </Router>
   );
 }

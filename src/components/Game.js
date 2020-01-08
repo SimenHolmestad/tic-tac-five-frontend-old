@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import Board from './Board';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { updateGameId } from './../actions/GameIdActions';
+import { updateGameId, updatePlayType } from './../actions/GameIdActions';
 
 function Game(props) {
   const dispatch = useDispatch();
@@ -10,7 +10,8 @@ function Game(props) {
   // Set the game id to the id in the url
   useEffect(() => {
     dispatch(updateGameId(props.match.params.gameId));
-  }, [dispatch]);
+    dispatch(updatePlayType(props.match.params.playType));
+  }, [dispatch, props.match.params]);
 
   const winner = useSelector((state) => state.gameData.winner);
   let winnerText;
