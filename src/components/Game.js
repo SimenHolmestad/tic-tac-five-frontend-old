@@ -21,7 +21,7 @@ function Game(props) {
   const winner = useSelector((state) => state.gameData.winner);
   let winnerText;
   if (winner !== null && winner !== undefined) {
-    winnerText = <h2>winner: { winner }</h2>;
+    winnerText = <h2>Winner: { winner }</h2>;
   }
 
   const nextToMove = useSelector((state) => state.gameData.nextToMove);

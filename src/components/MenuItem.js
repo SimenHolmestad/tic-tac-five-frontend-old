@@ -5,7 +5,7 @@ function MenuItem(props) {
   const urlBase = '/play/' + props.game._id;
   return (
     <div>
-      <h1>Spill: { props.game.name }</h1>
+      <h1>Game: { props.game.name }</h1>
       <ul>
         <li><Link to={ urlBase + '/X_player'}>Play as X</Link></li>
         <li><Link to={ urlBase + '/O_player'}>Play as O</Link></li>

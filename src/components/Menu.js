@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react';
-import { link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 import MenuItem from './MenuItem';
-import { fetchActiveGames } from './../actions/ActiveGamesActions';
+import { fetchActiveGames, createNewGame } from './../actions/ActiveGamesActions';
 import { useSelector, useDispatch } from 'react-redux';
 
 function Menu(props) {
@@ -16,15 +15,28 @@ function Menu(props) {
     };
   }, [dispatch]);
 
-  const activeGames = useSelector((state) => state.activeGames);
+  const [newGameName, setNewGameName] = useState( '' );
 
+  const activeGames = useSelector((state) => state.activeGames);
   if (activeGames === []) {
     return <div>There are no active games</div>;
   }
 
-  return activeGames.map(game => {
+  const menuItems = activeGames.map(game => {
     return <MenuItem game={ game } key={ game._id }/>;
   });
+
+  return <div>
+           { menuItems }
+           <h1>Create new game</h1>
+           <input
+             type="text"
+             value={newGameName}
+             placeholder="Name of game"
+             onChange={e => setNewGameName(e.target.value)}
+           />
+           <button onClick={() => dispatch(createNewGame(newGameName))}>Create game</button>
+         </div>;
 }
 
 export default Menu;
