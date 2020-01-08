@@ -7,9 +7,9 @@ import { updateGameId } from './../actions/GameIdActions';
 function Game(props) {
   const dispatch = useDispatch();
 
-  // Set the game id to the id described in the .env file when the page loads
+  // Set the game id to the id in the url
   useEffect(() => {
-    dispatch(updateGameId(process.env.REACT_APP_TEST_GAME_ID));
+    dispatch(updateGameId(props.match.params.gameId));
   }, [dispatch]);
 
   const winner = useSelector((state) => state.gameData.winner);
