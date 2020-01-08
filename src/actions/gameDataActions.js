@@ -36,7 +36,6 @@ export function doMove(gameId, xPos, yPos, player) {
         headers: {'Content-Type':'application/json'},
         body: JSON.stringify(opts)
       });
-      console.log(response);
       const data = await response.json();
       if (! data.error) {
         dispatch(updateGameData(data));

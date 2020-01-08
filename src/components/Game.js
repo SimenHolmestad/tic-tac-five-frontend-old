@@ -10,7 +10,12 @@ function Game(props) {
   // Set the game id to the id in the url
   useEffect(() => {
     dispatch(updateGameId(props.match.params.gameId));
-    dispatch(updatePlayType(props.match.params.playType));
+
+    let playType = props.match.params.playType;
+    if (playType !== 'X_player' && playType !== 'O_player' && playType !== 'both_players') {
+      playType = 'observer';
+    }
+    dispatch(updatePlayType(playType));
   }, [dispatch, props.match.params]);
 
   const winner = useSelector((state) => state.gameData.winner);
@@ -25,11 +30,18 @@ function Game(props) {
     winnerText = <h2>Next To Move: { nextToMove }</h2>;
   }
 
+  const playType = useSelector((state) => state.gameInfo.playType);
+  let playTypeString = '';
+  if (playType) {
+    playTypeString = playType.replace('_', ' ');
+  }
+
   return (
     <div>
       <Board/>
       { winnerText }
       { nextToMoveText }
+      { 'In game as: ' + playTypeString }
     </div>
   );
 }
