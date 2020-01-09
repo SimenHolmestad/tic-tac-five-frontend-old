@@ -25,9 +25,15 @@ function Square(props) {
     dispatch(doMove(gameId, props.xPos, props.yPos, player));
   }
 
+  let value = props.value;
+  // Blink if this is a winning move
+  if (props.winningMove) {
+    value = <div className="blink_me">{props.value}</div>;
+  }
+
   return (
     <button className="square" onClick={ () => squareClicked() }>
-      {props.value}
+      {value}
     </button>
   );
 }

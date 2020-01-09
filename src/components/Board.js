@@ -26,30 +26,44 @@ function Board() {
     return <h2>Loading...</h2>;
   }
 
-  // Change "-" to " " in boardState
-  const squares = gameData.boardState.map(squareRow => {
-    return squareRow.map(squareTile => {
-      if (squareTile === "-") {
-        return " ";
-      } else {
-        return squareTile;
+  // Create square components and change "-" to " "
+  const squareRows = gameData.boardState.map((squareRow, rowIndex) => {
+    return squareRow.map((squareTile, columnIndex) => {
+      let value = squareTile;
+      if (value === "-") {
+        value =  " ";
       }
+      return <Square
+               value={ value }
+               key={ columnIndex }
+               xPos={ columnIndex }
+               yPos={ rowIndex }/>;
     });
   });
 
+  // Add blinking effect to tiles in the winning line if the game is won
+  if(gameData.winner) {
+    for (const winningSquare of gameData.winningLine) {
+      const yPos = winningSquare[0];
+      const xPos = winningSquare[1];
+      let value = gameData.boardState[yPos][xPos];
+      if (value === "-") {
+        value =  " ";
+      }
+      squareRows[yPos][xPos] = <Square
+                                 value={ value }
+                                 key={ xPos }
+                                 xPos={ xPos }
+                                 yPos={ yPos }
+                                 winningMove={ true }/>;
+    }
+  }
+
   // Render the board row by row
-  return squares.map((squareRow, rowIndex) => {
+  return squareRows.map((squareRow, rowIndex) => {
     return <div className="board-row" key={ rowIndex }>
-              {
-                squareRow.map((squareTile, columnIndex) => {
-                  return <Square
-                           value={ squareTile }
-                           key={ columnIndex }
-                           xPos={ columnIndex }
-                           yPos={ rowIndex }/>;
-                })
-              }
-            </div>;
+             { squareRow }
+           </div>;
   });
 }
 
