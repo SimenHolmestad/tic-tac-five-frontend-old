@@ -1,6 +1,8 @@
 # Tic-tac-five frontend
 This project is made as a frontend for playing games of 5 in a row with [this backend](https://github.com/SimenHolmestad/tic-tac-five). It can be used to play games on one machine or on multiple machines (using the same url).
 
+![Tic-tac-five screenshot](http://folk.ntnu.no/simehol/images/tic-tac-five.png)
+
 The frontend provides a way of viewing the games which are currently not finished, create a new game or enter an already existing game. It is possible to enter the game as the X-player, the O-player, both players (for playing on a single computer) or as an observer.
 
 ## How to setup the project
