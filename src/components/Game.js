@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import Board from './Board';
+import NewGame from './NewGame';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { updateGameId, updatePlayType } from './../actions/GameIdActions';
@@ -42,6 +43,7 @@ function Game(props) {
       <Board/>
       { infoText }
       { 'In game as: ' + playTypeString }
+      { winner ? <NewGame/> : null }
     </div>
   );
 }
