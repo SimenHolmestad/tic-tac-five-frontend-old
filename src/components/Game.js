@@ -43,6 +43,7 @@ function Game(props) {
 
   return (
     <div>
+      <h2><Link to={''}>Back to menu</Link></h2>
       <Board/>
       { infoText }
       { winner ? <NewGame/> : null }
