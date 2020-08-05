@@ -18,18 +18,19 @@ function Game(props) {
     dispatch(updatePlayType(playType));
   }, [dispatch, props.match.params]);
 
+  // Set infoText to show to player
   const winner = useSelector((state) => state.gameData.winner);
-  let winnerText;
-  if (winner !== null && winner !== undefined) {
-    winnerText = <h2>Winner: { winner }</h2>;
-  }
-
   const nextToMove = useSelector((state) => state.gameData.nextToMove);
-  let nextToMoveText;
-  if (nextToMove !== null && nextToMove !== undefined) {
-    winnerText = <h2>Next To Move: { nextToMove }</h2>;
+
+  let infoText;
+
+  if (winner) {
+    infoText = <h2>Winner: { winner }</h2>;
+  } else if  (nextToMove) {
+    infoText = <h2>Next To Move: { nextToMove }</h2>;
   }
 
+  // Create string containing info about the playType
   const playType = useSelector((state) => state.gameInfo.playType);
   let playTypeString = '';
   if (playType) {
@@ -39,8 +40,7 @@ function Game(props) {
   return (
     <div>
       <Board/>
-      { winnerText }
-      { nextToMoveText }
+      { infoText }
       { 'In game as: ' + playTypeString }
     </div>
   );
