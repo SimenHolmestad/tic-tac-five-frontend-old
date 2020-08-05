@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import Square from './Square';
+import BoardSquare from './BoardSquare';
 import './Board.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchGameData } from './../actions/gameDataActions';
@@ -38,7 +38,7 @@ function Board() {
       }
       // Check if square is in the winning line
       const shouldBlink = winningLineString.indexOf(JSON.stringify([rowIndex, columnIndex])) !== -1;
-      return <Square
+      return <BoardSquare
                value={ value }
                key={ columnIndex }
                xPos={ columnIndex }

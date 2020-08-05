@@ -4,7 +4,7 @@ import './Board.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { doMove } from './../actions/gameDataActions';
 
-function Square(props) {
+function BoardSquare(props) {
   const dispatch = useDispatch();
   const gameData = useSelector((state) => state.gameData);
   const gameId = useSelector((state) => state.gameInfo.gameId);
@@ -38,4 +38,4 @@ function Square(props) {
   );
 }
 
-export default Square;
+export default BoardSquare;
