@@ -27,7 +27,7 @@ function Square(props) {
 
   let value = props.value;
   // Blink if this is a winning move
-  if (props.winningMove) {
+  if (props.blinking) {
     value = <div className="blink_me">{props.value}</div>;
   }
 

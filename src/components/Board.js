@@ -20,7 +20,7 @@ function Board() {
     };
   }, [dispatch, gameId]);
 
-  // Get gameData and add loading text if there is noe gameData
+  // Get gameData and add loading text if there is no gameData
   const gameData = useSelector((state) => state.gameData);
   if (! gameData.boardState) {
     return <h2>Loading...</h2>;
@@ -47,15 +47,13 @@ function Board() {
       const yPos = winningSquare[0];
       const xPos = winningSquare[1];
       let value = gameData.boardState[yPos][xPos];
-      if (value === "-") {
-        value =  " ";
-      }
+
       squareRows[yPos][xPos] = <Square
                                  value={ value }
                                  key={ xPos }
                                  xPos={ xPos }
                                  yPos={ yPos }
-                                 winningMove={ true }/>;
+                                 blinking={ true }/>;
     }
   }
 
