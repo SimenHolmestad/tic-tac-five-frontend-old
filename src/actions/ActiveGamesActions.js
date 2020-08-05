@@ -51,6 +51,8 @@ export function createNewGame(name) {
         return;
       }
       dispatch(addToActiveGames(data));
+      return data
+
     } catch (error) {
       console.log('Could not create game', error);
     }
