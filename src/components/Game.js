@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import Board from './Board';
 import NewGame from './NewGame';
+import { Link } from 'react-router-dom';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { updateGameId, updatePlayType } from './../actions/GameIdActions';
@@ -38,12 +39,20 @@ function Game(props) {
     playTypeString = playType.replace('_', ' ');
   }
 
+  const urlBase = '/play/' + props.match.params.gameId;
+
   return (
     <div>
       <Board/>
       { infoText }
-      { 'In game as: ' + playTypeString }
       { winner ? <NewGame/> : null }
+      { 'In game as: ' + playTypeString }
+      <ul>
+        <li><Link to={ urlBase + '/X_player'}>Change to playing as X</Link></li>
+        <li><Link to={ urlBase + '/O_player'}>Change to playing as O</Link></li>
+        <li><Link to={ urlBase + '/both_players'}>Change to playing as both players</Link></li>
+        <li><Link to={ urlBase + '/observe'}>Change to observing the game</Link></li>
+      </ul>
     </div>
   );
 }

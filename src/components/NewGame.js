@@ -14,7 +14,7 @@ function NewGame() {
   }
 
   return (
-    <div>
+    <div style={{marginBottom: "30px"}}>
       <h1>Create new game</h1>
       <input
         type="text"
