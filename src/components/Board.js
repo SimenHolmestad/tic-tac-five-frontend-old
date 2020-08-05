@@ -27,7 +27,6 @@ function Board() {
   }
 
   const winningLineString = JSON.stringify(gameData.winningLine);
-  console.log(winningLineString);
 
   // Create square components
   const squareRows = gameData.boardState.map((squareRow, rowIndex) => {
