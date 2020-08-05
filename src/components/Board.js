@@ -26,36 +26,27 @@ function Board() {
     return <h2>Loading...</h2>;
   }
 
-  // Create square components and change "-" to " "
+  const winningLineString = JSON.stringify(gameData.winningLine);
+  console.log(winningLineString);
+
+  // Create square components
   const squareRows = gameData.boardState.map((squareRow, rowIndex) => {
     return squareRow.map((squareTile, columnIndex) => {
       let value = squareTile;
+      // Change "-" to " " (as "-" comes from database)
       if (value === "-") {
         value =  " ";
       }
+      // Check if square is in the winning line
+      const shouldBlink = winningLineString.indexOf(JSON.stringify([rowIndex, columnIndex])) !== -1;
       return <Square
                value={ value }
                key={ columnIndex }
                xPos={ columnIndex }
-               yPos={ rowIndex }/>;
+               yPos={ rowIndex }
+               blinking={ shouldBlink }/>;
     });
   });
-
-  // Add blinking effect to tiles in the winning line if the game is won
-  if(gameData.winner) {
-    for (const winningSquare of gameData.winningLine) {
-      const yPos = winningSquare[0];
-      const xPos = winningSquare[1];
-      let value = gameData.boardState[yPos][xPos];
-
-      squareRows[yPos][xPos] = <Square
-                                 value={ value }
-                                 key={ xPos }
-                                 xPos={ xPos }
-                                 yPos={ yPos }
-                                 blinking={ true }/>;
-    }
-  }
 
   // Render the board row by row
   return squareRows.map((squareRow, rowIndex) => {
